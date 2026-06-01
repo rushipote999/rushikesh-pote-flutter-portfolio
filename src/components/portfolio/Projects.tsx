@@ -53,9 +53,11 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="group glass gradient-border relative overflow-hidden rounded-3xl p-7 transition-transform hover:-translate-y-1"
+            whileHover={{ y: -8, scale: 1.015 }}
+            className="group glass gradient-border relative overflow-hidden rounded-3xl p-7 transition-shadow duration-300 hover:shadow-[0_20px_60px_-20px_oklch(0.7_0.22_295/0.55)]"
           >
-            <div className={`absolute -right-20 -top-20 h-48 w-48 rounded-full bg-gradient-to-br ${p.accent} opacity-20 blur-3xl transition-opacity group-hover:opacity-40`} />
+            <div className={`absolute -right-20 -top-20 h-48 w-48 rounded-full bg-gradient-to-br ${p.accent} opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-60`} />
+            <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-[0.07]`} />
             <div className="relative">
               <div className={`inline-grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br ${p.accent}`}>
                 <p.icon className="h-6 w-6 text-background" />
