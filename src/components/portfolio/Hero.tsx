@@ -1,9 +1,14 @@
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from "react";
 import { Download, ArrowRight, Sparkles } from "lucide-react";
 import developerImg from "@/assets/developer.jpg";
 
-const titles = ["Flutter Developer", "Mobile App Developer", "Cross-Platform Engineer"];
+const titles = [
+  "Flutter Developer",
+  "Mobile App Developer",
+  "Firebase Developer",
+  "Cross Platform Developer",
+];
 
 function useTyping() {
   const [idx, setIdx] = useState(0);
@@ -35,12 +40,81 @@ const stats = [
   { value: "5+", label: "Technologies" },
 ];
 
+function MagneticButton({
+  children,
+  href,
+  variant = "primary",
+}: {
+  children: ReactNode;
+  href: string;
+  variant?: "primary" | "glass";
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 200, damping: 15 });
+  const sy = useSpring(y, { stiffness: 200, damping: 15 });
+
+  const onMove = (e: ReactMouseEvent<HTMLAnchorElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    x.set((e.clientX - (r.left + r.width / 2)) * 0.35);
+    y.set((e.clientY - (r.top + r.height / 2)) * 0.35);
+  };
+  const onLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const base =
+    "group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-shadow";
+  const styles =
+    variant === "primary"
+      ? "gradient-primary text-background shadow-[0_0_24px_-4px_oklch(0.7_0.22_295/0.6)] hover:shadow-[0_0_40px_-2px_oklch(0.7_0.22_295/0.9)]"
+      : "glass hover:bg-white/10 hover:shadow-[0_0_30px_-6px_oklch(0.75_0.18_220/0.6)]";
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ x: sx, y: sy }}
+      whileHover={{ scale: 1.06 }}
+      whileTap={{ scale: 0.97 }}
+      className={`${base} ${styles}`}
+    >
+      {children}
+    </motion.a>
+  );
+}
+
 export function Hero() {
   const typed = useTyping();
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const psx = useSpring(mx, { stiffness: 60, damping: 20 });
+  const psy = useSpring(my, { stiffness: 60, damping: 20 });
+  const parallaxX = useTransform(psx, (v) => v * 20);
+  const parallaxY = useTransform(psy, (v) => v * 20);
+  const parallaxXNeg = useTransform(psx, (v) => v * -14);
+  const parallaxYNeg = useTransform(psy, (v) => v * -14);
+
+  const onSectionMove = (e: ReactMouseEvent<HTMLElement>) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - (r.left + r.width / 2)) / r.width);
+    my.set((e.clientY - (r.top + r.height / 2)) / r.height);
+  };
+
   return (
-    <section id="home" className="relative flex min-h-screen items-center px-5 pt-28 pb-20">
+    <section
+      id="home"
+      onMouseMove={onSectionMove}
+      className="relative flex min-h-screen items-center px-5 pt-28 pb-20"
+    >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
+        <motion.div style={{ x: parallaxX, y: parallaxY }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,7 +129,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+            className="mt-6 text-6xl font-extrabold leading-[1.02] tracking-tight sm:text-7xl lg:text-[5.5rem]"
           >
             Hi, I'm <span className="gradient-text">Rushikesh Pote</span>
           </motion.h1>
@@ -64,7 +138,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 flex h-10 items-center text-2xl text-muted-foreground sm:text-3xl"
+            className="mt-5 flex h-12 items-center text-2xl text-muted-foreground sm:text-3xl"
           >
             <span>I build </span>
             <span className="ml-2 font-semibold text-foreground">{typed}</span>
@@ -88,20 +162,14 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-8 flex flex-wrap gap-3"
           >
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-background glow transition-transform hover:scale-105"
-            >
+            <MagneticButton href="#projects" variant="primary">
               View Projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#"
-              className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors hover:bg-white/10"
-            >
+            </MagneticButton>
+            <MagneticButton href="#" variant="glass">
               <Download className="h-4 w-4" />
               Download Resume
-            </a>
+            </MagneticButton>
           </motion.div>
 
           <motion.div
@@ -119,17 +187,42 @@ export function Hero() {
               </div>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
+          style={{ x: parallaxXNeg, y: parallaxYNeg }}
           className="relative mx-auto w-full max-w-md"
         >
-          <div className="absolute -inset-4 rounded-[2rem] gradient-primary opacity-30 blur-2xl" />
-          <div className="relative overflow-hidden rounded-[2rem] glass-strong p-2">
-            <div className="overflow-hidden rounded-[1.6rem]">
+          {/* Glow halo */}
+          <motion.div
+            animate={{ opacity: [0.3, 0.55, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute -inset-6 rounded-[2.4rem] gradient-primary blur-3xl"
+          />
+          {/* Rotating gradient ring */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+            className="absolute -inset-3 rounded-[2.2rem]"
+            style={{
+              background:
+                "conic-gradient(from 0deg, oklch(0.7 0.22 295), oklch(0.7 0.22 250), oklch(0.85 0.18 200), oklch(0.7 0.22 295))",
+              filter: "blur(2px)",
+            }}
+          />
+          {/* Glass backdrop */}
+          <div className="absolute -inset-1 rounded-[2.1rem] glass-strong" />
+          <motion.div
+            animate={{ y: [0, -14, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative overflow-hidden rounded-[2rem] glass-strong p-2"
+          >
+            {/* Neon inner border */}
+            <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-[oklch(0.85_0.18_220/0.4)] [box-shadow:inset_0_0_30px_oklch(0.7_0.22_295/0.35)]" />
+            <div className="relative overflow-hidden rounded-[1.6rem]">
               <img
                 src={developerImg}
                 alt="Rushikesh Pote, Flutter Developer"
@@ -155,7 +248,7 @@ export function Hero() {
             >
               <div className="font-semibold gradient-text">Dart · Firebase</div>
             </motion.div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -216,4 +216,13 @@
 .animate-blob { animation: float-blob 20s ease-in-out infinite; }
 .animate-blink { animation: blink 1s step-end infinite; }
 
+@keyframes spin-slow {
+  to { --angle: 360deg; }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 ::selection { background: oklch(0.7 0.22 295 / 0.4); color: white; }
