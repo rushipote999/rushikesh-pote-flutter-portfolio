@@ -1,10 +1,12 @@
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from "react";
 import {
-  Download,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent as ReactMouseEvent,
+  type ReactNode,
+} from "react";
+import { Download, ArrowRight, Sparkles } from "lucide-react";
 import developerImg from "@/assets/developer.png";
 
 const titles = [
@@ -103,7 +105,6 @@ function MagneticButton({
   );
 }
 
-
 export function Hero() {
   const typed = useTyping();
   const mx = useMotionValue(0);
@@ -165,9 +166,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
-            Crafting beautiful, performant cross-platform mobile experiences with Flutter,
-            Firebase, and modern state management. Turning ideas into production-ready apps
-            that users love.
+            Crafting beautiful, performant cross-platform mobile experiences with Flutter, Firebase,
+            and modern state management. Turning ideas into production-ready apps that users love.
           </motion.p>
 
           <motion.div
@@ -180,7 +180,7 @@ export function Hero() {
               View Projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </MagneticButton>
-            <MagneticButton 
+            <MagneticButton
               href="/Rushikesh_Pote_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"

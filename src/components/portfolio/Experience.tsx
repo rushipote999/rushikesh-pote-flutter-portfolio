@@ -22,7 +22,11 @@ export function Experience() {
     <Section
       id="experience"
       eyebrow="Experience"
-      title={<>A track record of <span className="gradient-text">shipping work</span></>}
+      title={
+        <>
+          A track record of <span className="gradient-text">shipping work</span>
+        </>
+      }
     >
       <div className="relative">
         <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-[oklch(0.68_0.25_300)] via-[oklch(0.7_0.22_250)] to-transparent md:left-6" />

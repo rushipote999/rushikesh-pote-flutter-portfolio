@@ -3,11 +3,31 @@ import { Section } from "./Section";
 import { Award, Rocket, Layers, Database, Users } from "lucide-react";
 
 const items = [
-  { icon: Award, title: "2+ Years Professional Experience", desc: "Consistent delivery across real production teams." },
-  { icon: Rocket, title: "Multiple Production Apps Delivered", desc: "Shipped apps used by real customers." },
-  { icon: Layers, title: "Expertise in Flutter Architecture", desc: "Clean, scalable patterns with GetX & BLoC." },
-  { icon: Database, title: "Firebase & REST API Integration", desc: "Secure, real-time, production-grade backends." },
-  { icon: Users, title: "Team Collaboration & Delivery", desc: "Cross-functional work with design, backend, QA." },
+  {
+    icon: Award,
+    title: "2+ Years Professional Experience",
+    desc: "Consistent delivery across real production teams.",
+  },
+  {
+    icon: Rocket,
+    title: "Multiple Production Apps Delivered",
+    desc: "Shipped apps used by real customers.",
+  },
+  {
+    icon: Layers,
+    title: "Expertise in Flutter Architecture",
+    desc: "Clean, scalable patterns with GetX & BLoC.",
+  },
+  {
+    icon: Database,
+    title: "Firebase & REST API Integration",
+    desc: "Secure, real-time, production-grade backends.",
+  },
+  {
+    icon: Users,
+    title: "Team Collaboration & Delivery",
+    desc: "Cross-functional work with design, backend, QA.",
+  },
 ];
 
 export function Achievements() {
@@ -15,7 +35,11 @@ export function Achievements() {
     <Section
       id="achievements"
       eyebrow="Achievements"
-      title={<>Milestones along the <span className="gradient-text">journey</span></>}
+      title={
+        <>
+          Milestones along the <span className="gradient-text">journey</span>
+        </>
+      }
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {items.map((a, i) => (

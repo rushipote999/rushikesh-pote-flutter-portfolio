@@ -1,6 +1,15 @@
 import { motion } from "motion/react";
 import { Section } from "./Section";
-import { ExternalLink, Github, Briefcase, GraduationCap, Landmark, Sparkles, ShoppingBag, type LucideIcon } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Briefcase,
+  GraduationCap,
+  Landmark,
+  Sparkles,
+  ShoppingBag,
+  type LucideIcon,
+} from "lucide-react";
 
 interface Project {
   title: string;
@@ -18,7 +27,8 @@ interface Project {
 const projects: Project[] = [
   {
     title: "TreeCoin (Finance App)",
-    description: "A comprehensive fintech mobile application designed to streamline bank loan workflows. Developed a hierarchical system featuring origination branches, agent organizations, agent onboarding, customer registration, and a multi-stage loan approval/rejection decision system.",
+    description:
+      "A comprehensive fintech mobile application designed to streamline bank loan workflows. Developed a hierarchical system featuring origination branches, agent organizations, agent onboarding, customer registration, and a multi-stage loan approval/rejection decision system.",
     features: [
       "Frontend Team Leadership",
       "BLoC State Management",
@@ -30,11 +40,13 @@ const projects: Project[] = [
     tech: ["Flutter", "Dart", "BLoC Pattern", "REST APIs", "Financial Workflows"],
     icon: Landmark,
     accent: "from-[oklch(0.6_0.25_140)] to-[oklch(0.75_0.18_180)]",
-    playStore: "https://play.google.com/store/apps/details?id=com.treecoin.app&pcampaignid=web_share",
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.treecoin.app&pcampaignid=web_share",
   },
   {
     title: "CRM App",
-    description: "A production-grade enterprise CRM mobile application optimizing sales pipelines, field force logistics, and warehouse operations. Features an offline-first sync engine, real-time GPS trip logs, Bluetooth thermal printing, and secure payment processing.",
+    description:
+      "A production-grade enterprise CRM mobile application optimizing sales pipelines, field force logistics, and warehouse operations. Features an offline-first sync engine, real-time GPS trip logs, Bluetooth thermal printing, and secure payment processing.",
     features: [
       "Lead & Campaign Pipelines",
       "GPS Geolocation & Trip Logs",
@@ -43,15 +55,25 @@ const projects: Project[] = [
       "Bluetooth Thermal Printing",
       "Push Alerts & Multi-Language Support",
     ],
-    tech: ["Flutter", "Dart", "GetX", "GoRouter", "Dio (REST API)", "Google Maps SDK", "Firebase FCM"],
+    tech: [
+      "Flutter",
+      "Dart",
+      "GetX",
+      "GoRouter",
+      "Dio (REST API)",
+      "Google Maps SDK",
+      "Firebase FCM",
+    ],
     icon: Briefcase,
     accent: "from-[oklch(0.68_0.25_300)] to-[oklch(0.7_0.22_250)]",
-    playStore: "https://play.google.com/store/apps/details?id=com.baap.crm.app&pcampaignid=web_share",
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.baap.crm.app&pcampaignid=web_share",
     appStore: "https://apps.apple.com/us/app/baap-crm/id6746981287",
   },
   {
     title: "SchoolBook",
-    description: "SchoolBook is a Flutter + Firebase-based school management application designed to digitize and simplify day-to-day school operations for administrators, teachers, and parents.",
+    description:
+      "SchoolBook is a Flutter + Firebase-based school management application designed to digitize and simplify day-to-day school operations for administrators, teachers, and parents.",
     features: [
       "Student Registration",
       "Attendance Tracking",
@@ -63,12 +85,14 @@ const projects: Project[] = [
     tech: ["Flutter", "Firebase", "Firebase Auth", "Real-time Database", "Push Notifications"],
     icon: GraduationCap,
     accent: "from-[oklch(0.7_0.22_250)] to-[oklch(0.85_0.18_200)]",
-    playStore: "https://play.google.com/store/apps/details?id=com.school.book.app&pcampaignid=web_share",
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.school.book.app&pcampaignid=web_share",
     appStore: "https://apps.apple.com/us/app/school-book-app/id6746955392",
   },
   {
     title: "Janhit Application",
-    description: "Janhit is a Flutter-based mobile application that digitizes the complete civic grievance lifecycle enabling citizens to report public issues like roads, water supply, electricity, and sanitation directly from their smartphones.",
+    description:
+      "Janhit is a Flutter-based mobile application that digitizes the complete civic grievance lifecycle enabling citizens to report public issues like roads, water supply, electricity, and sanitation directly from their smartphones.",
     features: [
       "Role-Based Access Control",
       "GPS Location Capture",
@@ -80,11 +104,13 @@ const projects: Project[] = [
     tech: ["Flutter", "Node.js", "Firebase", "REST APIs", "GPS Integration"],
     icon: Landmark,
     accent: "from-[oklch(0.55_0.25_275)] to-[oklch(0.68_0.25_300)]",
-    playStore: "https://play.google.com/store/apps/details?id=com.government.janhit&pcampaignid=web_share",
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.government.janhit&pcampaignid=web_share",
   },
   {
     title: "Dealer App (e-commerce)",
-    description: "Developed a comprehensive e-commerce and inventory management application that allows users to browse products, manage inventory, generate quotations, add products to the cart, place orders, make secure payments, track order status, and view order details. Integrated REST APIs and payment gateway services to deliver a seamless and efficient user experience.",
+    description:
+      "Developed a comprehensive e-commerce and inventory management application that allows users to browse products, manage inventory, generate quotations, add products to the cart, place orders, make secure payments, track order status, and view order details. Integrated REST APIs and payment gateway services to deliver a seamless and efficient user experience.",
     features: [
       "Product Browsing",
       "Inventory Management",
@@ -93,10 +119,19 @@ const projects: Project[] = [
       "Secure Payments",
       "Order Tracking",
     ],
-    tech: ["Flutter", "Dart", "GetX", "REST APIs", "Dio", "Payment Gateway", "Inventory Management"],
+    tech: [
+      "Flutter",
+      "Dart",
+      "GetX",
+      "REST APIs",
+      "Dio",
+      "Payment Gateway",
+      "Inventory Management",
+    ],
     icon: ShoppingBag,
     accent: "from-[oklch(0.85_0.18_200)] to-[oklch(0.55_0.25_275)]",
-    playStore: "https://play.google.com/store/apps/details?id=com.rmdrip.dealer&pcampaignid=web_share",
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.rmdrip.dealer&pcampaignid=web_share",
   },
 ];
 
@@ -105,7 +140,11 @@ export function Projects() {
     <Section
       id="projects"
       eyebrow="Featured Projects"
-      title={<>Selected <span className="gradient-text">work</span></>}
+      title={
+        <>
+          Selected <span className="gradient-text">work</span>
+        </>
+      }
       description="A few production apps I've architected and shipped."
     >
       <div className="grid gap-6 md:grid-cols-2">
@@ -119,10 +158,16 @@ export function Projects() {
             whileHover={{ y: -8, scale: 1.015 }}
             className="group glass gradient-border relative overflow-hidden rounded-3xl p-7 transition-shadow duration-300 hover:shadow-[0_20px_60px_-20px_oklch(0.7_0.22_295/0.55)]"
           >
-            <div className={`absolute -right-20 -top-20 h-48 w-48 rounded-full bg-gradient-to-br ${p.accent} opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-60`} />
-            <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-[0.07]`} />
+            <div
+              className={`absolute -right-20 -top-20 h-48 w-48 rounded-full bg-gradient-to-br ${p.accent} opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-60`}
+            />
+            <div
+              className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 transition-opacity duration-500 group-hover:opacity-[0.07]`}
+            />
             <div className="relative">
-              <div className={`inline-grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br ${p.accent}`}>
+              <div
+                className={`inline-grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br ${p.accent}`}
+              >
                 <p.icon className="h-6 w-6 text-background" />
               </div>
               <h3 className="mt-5 text-2xl font-semibold tracking-tight">{p.title}</h3>
