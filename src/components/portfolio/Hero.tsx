@@ -1,7 +1,11 @@
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from "react";
-import { Download, ArrowRight, Sparkles } from "lucide-react";
-import developerImg from "@/assets/developer.jpg";
+import {
+  Download,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
+import developerImg from "@/assets/developer.png";
 
 const titles = [
   "Flutter Developer",
@@ -43,11 +47,17 @@ const stats = [
 function MagneticButton({
   children,
   href,
+  onClick,
   variant = "primary",
+  target,
+  rel,
 }: {
   children: ReactNode;
-  href: string;
+  href?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   variant?: "primary" | "glass";
+  target?: string;
+  rel?: string;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
@@ -68,7 +78,7 @@ function MagneticButton({
   };
 
   const base =
-    "group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-shadow";
+    "group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold cursor-pointer transition-shadow";
   const styles =
     variant === "primary"
       ? "gradient-primary text-background shadow-[0_0_24px_-4px_oklch(0.7_0.22_295/0.6)] hover:shadow-[0_0_40px_-2px_oklch(0.7_0.22_295/0.9)]"
@@ -78,6 +88,9 @@ function MagneticButton({
     <motion.a
       ref={ref}
       href={href}
+      onClick={onClick}
+      target={target}
+      rel={rel}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       style={{ x: sx, y: sy }}
@@ -89,6 +102,7 @@ function MagneticButton({
     </motion.a>
   );
 }
+
 
 export function Hero() {
   const typed = useTyping();
@@ -166,7 +180,12 @@ export function Hero() {
               View Projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </MagneticButton>
-            <MagneticButton href="#" variant="glass">
+            <MagneticButton 
+              href="/Rushikesh_Pote_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="glass"
+            >
               <Download className="h-4 w-4" />
               Download Resume
             </MagneticButton>
@@ -194,19 +213,19 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ x: parallaxXNeg, y: parallaxYNeg }}
-          className="relative mx-auto w-full max-w-md"
+          className="relative mx-auto w-full max-w-sm aspect-square"
         >
           {/* Glow halo */}
           <motion.div
             animate={{ opacity: [0.3, 0.55, 0.3] }}
             transition={{ duration: 4, repeat: Infinity }}
-            className="absolute -inset-6 rounded-[2.4rem] gradient-primary blur-3xl"
+            className="absolute -inset-6 rounded-full gradient-primary blur-3xl"
           />
           {/* Rotating gradient ring */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-            className="absolute -inset-3 rounded-[2.2rem]"
+            className="absolute -inset-3 rounded-full"
             style={{
               background:
                 "conic-gradient(from 0deg, oklch(0.7 0.22 295), oklch(0.7 0.22 250), oklch(0.85 0.18 200), oklch(0.7 0.22 295))",
@@ -214,21 +233,19 @@ export function Hero() {
             }}
           />
           {/* Glass backdrop */}
-          <div className="absolute -inset-1 rounded-[2.1rem] glass-strong" />
+          <div className="absolute -inset-1 rounded-full glass-strong" />
           <motion.div
             animate={{ y: [0, -14, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative overflow-hidden rounded-[2rem] glass-strong p-2"
+            className="relative aspect-square overflow-hidden rounded-full glass-strong p-2"
           >
             {/* Neon inner border */}
-            <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-[oklch(0.85_0.18_220/0.4)] [box-shadow:inset_0_0_30px_oklch(0.7_0.22_295/0.35)]" />
-            <div className="relative overflow-hidden rounded-[1.6rem]">
+            <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-[oklch(0.85_0.18_220/0.4)] [box-shadow:inset_0_0_30px_oklch(0.7_0.22_295/0.35)]" />
+            <div className="relative h-full w-full overflow-hidden rounded-full">
               <img
                 src={developerImg}
                 alt="Rushikesh Pote, Flutter Developer"
-                width={768}
-                height={896}
-                className="h-auto w-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
             <motion.div
