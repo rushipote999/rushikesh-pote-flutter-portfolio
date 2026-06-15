@@ -124,7 +124,12 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
     >
       <motion.div
         animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4 + (index % 3), delay: index * 0.2, repeat: Infinity, ease: "easeInOut" }}
+        transition={{
+          duration: 4 + (index % 3),
+          delay: index * 0.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
         className="relative h-full w-full"
       >
         {/* Animated gradient border */}
@@ -148,9 +153,7 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
           >
             <Icon className="h-6 w-6" />
           </div>
-          <div className="text-sm font-semibold tracking-tight text-foreground">
-            {skill.name}
-          </div>
+          <div className="text-sm font-semibold tracking-tight text-foreground">{skill.name}</div>
         </div>
       </motion.div>
     </motion.div>
@@ -162,7 +165,11 @@ export function Skills() {
     <Section
       id="skills"
       eyebrow="Skills"
-      title={<>The <span className="gradient-text">tech stack</span> I work with</>}
+      title={
+        <>
+          The <span className="gradient-text">tech stack</span> I work with
+        </>
+      }
       description="A modern toolkit refined across multiple production applications."
     >
       <div className="space-y-12">

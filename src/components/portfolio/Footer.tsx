@@ -7,7 +7,9 @@ export function Footer() {
         <div className="h-px bg-gradient-to-r from-transparent via-[oklch(0.7_0.22_295)]/60 to-transparent" />
         <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} <span className="gradient-text font-semibold">Rushikesh Pote</span>. Crafted with Flutter-grade care.
+            © {new Date().getFullYear()}{" "}
+            <span className="gradient-text font-semibold">Rushikesh Pote</span>. Crafted with
+            Flutter-grade care.
           </div>
           <div className="flex items-center gap-2">
             {[

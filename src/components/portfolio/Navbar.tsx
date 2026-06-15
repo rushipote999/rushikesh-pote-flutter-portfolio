@@ -42,7 +42,9 @@ export function Navbar() {
           <div className="grid h-9 w-9 place-items-center rounded-lg gradient-primary glow">
             <Code2 className="h-5 w-5 text-background" />
           </div>
-          <span className="font-semibold tracking-tight">Rushikesh<span className="gradient-text">.dev</span></span>
+          <span className="font-semibold tracking-tight">
+            Rushikesh<span className="gradient-text">.dev</span>
+          </span>
         </a>
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
