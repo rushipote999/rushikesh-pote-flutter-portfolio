@@ -5,10 +5,10 @@ import { Mail, Phone, Linkedin, Github, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const contacts = [
-  { icon: Mail, label: "Email", value: "rushikesh.pote@example.com", href: "mailto:rushikesh.pote@example.com" },
-  { icon: Phone, label: "Phone", value: "+91 00000 00000", href: "tel:+910000000000" },
-  { icon: Linkedin, label: "LinkedIn", value: "/in/rushikeshpote", href: "https://linkedin.com" },
-  { icon: Github, label: "GitHub", value: "@rushikeshpote", href: "https://github.com" },
+  { icon: Mail, label: "Email", value: "rushikeshpote2005@gmail.com", href: "mailto:rushikeshpote2005@gmail.com" },
+  { icon: Phone, label: "Phone", value: "+91 7020659533", href: "tel:+917020659533" },
+  { icon: Linkedin, label: "LinkedIn", value: "/in/rushikeshpote", href: "https://linkedin.com/in/rushikeshpote" },
+  { icon: Github, label: "GitHub", value: "@rushikeshpote", href: "https://github.com/rushikeshpote" },
 ];
 
 export function Contact() {
