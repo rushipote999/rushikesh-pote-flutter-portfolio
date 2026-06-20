@@ -6,16 +6,8 @@ import {
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
 } from "react";
-import {
-  Download,
-  ArrowRight,
-  Sparkles,
-  Activity,
-  Server,
-  Terminal,
-  Star,
-  CheckCircle2,
-} from "lucide-react";
+import { Download, ArrowRight, Sparkles } from "lucide-react";
+import developer3DImg from "@/assets/developer_3d.png";
 
 const titles = [
   "Flutter Developer",
@@ -110,168 +102,6 @@ function MagneticButton({
     >
       {children}
     </motion.a>
-  );
-}
-
-function DashboardMockup() {
-  const [activeTab, setActiveTab] = useState("analytics");
-
-  return (
-    <div className="relative w-full max-w-md mx-auto bg-black/45 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
-      {/* Window Controls */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 block" />
-        </div>
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
-          <Terminal className="h-3 w-3 text-cyan-400" /> developer_console_v2
-        </div>
-        <div className="w-8" />
-      </div>
-
-      {/* Content */}
-      <div className="p-4 space-y-4">
-        {/* Navigation Tabs */}
-        <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl">
-          {[
-            { id: "analytics", label: "Analytics", icon: Activity },
-            { id: "services", label: "Services", icon: Server },
-            { id: "console", label: "Console", icon: Terminal },
-          ].map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-2 w-full justify-center rounded-lg transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "bg-white/10 text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Icon className="h-3.5 w-3.5" />
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {activeTab === "analytics" && (
-          <div className="space-y-4">
-            {/* Stats Row */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white/5 p-3.5 rounded-xl border border-white/5 space-y-1">
-                <div className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">
-                  Active Installs
-                </div>
-                <div className="text-xl font-bold flex items-center justify-between">
-                  <span>24.8k</span>
-                  <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-400/10 px-1.5 py-0.5 rounded-full">
-                    +15.2%
-                  </span>
-                </div>
-              </div>
-              <div className="bg-white/5 p-3.5 rounded-xl border border-white/5 space-y-1">
-                <div className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">
-                  App Store Rating
-                </div>
-                <div className="text-xl font-bold flex items-center justify-between text-yellow-400">
-                  <span className="flex items-center gap-1">
-                    4.9 <Star className="h-3.5 w-3.5 fill-current" />
-                  </span>
-                  <span className="text-muted-foreground text-[10px]">1.2k reviews</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Performance Chart */}
-            <div className="bg-white/5 p-4 rounded-xl border border-white/5 space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-xs font-semibold text-foreground">App Performance (FPS)</span>
-                <span className="text-[10px] text-muted-foreground flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live (60 FPS)
-                </span>
-              </div>
-              
-              {/* Vertical bar chart */}
-              <div className="flex items-end justify-between h-24 pt-2">
-                {[55, 60, 58, 60, 59, 60, 60, 57, 59, 60, 60].map((val, idx) => {
-                  const pct = (val / 60) * 100;
-                  return (
-                    <div key={idx} className="flex flex-col items-center gap-1.5 w-full">
-                      <div className="relative group w-[6px] sm:w-[8px] bg-white/5 rounded-t-full h-16 flex items-end">
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: `${pct}%` }}
-                          transition={{ delay: idx * 0.04, duration: 0.8 }}
-                          className={`w-full rounded-t-full bg-gradient-to-t ${
-                            val < 58 
-                              ? "from-orange-500 to-yellow-400" 
-                              : "from-purple-500 to-cyan-400"
-                          } group-hover:brightness-125`}
-                        />
-                      </div>
-                      <span className="text-[8px] text-muted-foreground font-mono">
-                        {idx + 1}h
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "services" && (
-          <div className="space-y-2.5">
-            {[
-              { name: "Firebase Auth & Firestore", status: "Operational", ping: "12ms" },
-              { name: "Push Notifications", status: "Operational", ping: "45ms" },
-              { name: "REST API Gateways", status: "Operational", ping: "28ms" },
-              { name: "Payment SDK (Easebuzz)", status: "Operational", ping: "34ms" },
-            ].map((srv) => (
-              <div key={srv.name} className="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
-                <div className="flex items-center gap-2">
-                  <div className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                  </div>
-                  <span className="text-xs font-semibold">{srv.name}</span>
-                </div>
-                <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-                  <span className="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold">
-                    {srv.status}
-                  </span>
-                  <span className="font-mono">{srv.ping}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {activeTab === "console" && (
-          <div className="bg-black/60 rounded-xl p-3 border.5 border-white/5 font-mono text-[10px] leading-relaxed text-emerald-400 h-[174px] overflow-hidden space-y-1.5">
-            <div className="flex items-center gap-1.5">
-              <span className="text-purple-400">$</span> flutter build apk --release
-            </div>
-            <div className="text-muted-foreground">Building bundle for Production deployment...</div>
-            <div className="text-muted-foreground">✓ Compiled code assembly (4.2s)</div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-purple-400">$</span> firebase deploy --only functions
-            </div>
-            <div className="text-muted-foreground">Updating Firestore triggers...</div>
-            <div className="text-emerald-300 flex items-center gap-1">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Deploy completed successfully!
-            </div>
-            <div className="animate-pulse flex items-center gap-0.5">
-              <span className="text-purple-400">$</span> <span className="w-1.5 h-3 bg-emerald-400 inline-block" />
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
   );
 }
 
@@ -383,7 +213,7 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ x: parallaxXNeg, y: parallaxYNeg }}
-          className="relative mx-auto w-full max-w-md"
+          className="relative mx-auto w-full max-w-sm aspect-[4/5]"
         >
           {/* Glow halo */}
           <motion.div
@@ -392,13 +222,46 @@ export function Hero() {
             className="absolute -inset-8 rounded-[2rem] gradient-primary blur-3xl opacity-60"
           />
           
-          {/* Floating dashboard frame */}
+          {/* Main 3D Mobile Image with gentle float */}
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative"
+            className="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/10 glass-strong p-3 shadow-2xl flex items-center justify-center"
           >
-            <DashboardMockup />
+            {/* Glossy overlay effect */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 pointer-events-none rounded-[2rem]" />
+            <img
+              src={developer3DImg}
+              alt="3D Flutter Portfolio Mockup"
+              className="h-full w-full object-contain rounded-2xl select-none"
+            />
+
+            {/* Floating Badges */}
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="glass-strong absolute -left-6 top-1/4 rounded-2xl px-3.5 py-2 text-xs sm:block flex items-center gap-2 border border-white/10"
+            >
+              <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="font-semibold text-foreground">Flutter 3.x</span>
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="glass-strong absolute -right-6 bottom-1/4 rounded-2xl px-3.5 py-2 text-xs sm:block flex items-center gap-2 border border-white/10"
+            >
+              <span className="h-2 w-2 rounded-full bg-purple-400 animate-pulse" />
+              <span className="font-semibold text-foreground">Firebase Integration</span>
+            </motion.div>
+
+            <motion.div
+              animate={{ x: [0, -6, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="glass-strong absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full px-4 py-2 text-[10px] sm:block flex items-center gap-1.5 border border-white/10 uppercase tracking-wider font-bold"
+            >
+              <span className="text-emerald-400">●</span> 60 FPS Fluid UI
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
