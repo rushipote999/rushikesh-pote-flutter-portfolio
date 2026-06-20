@@ -11,7 +11,15 @@ const highlights = [
 
 export function About() {
   return (
-    <Section id="about" eyebrow="About Me" title={<>Building apps that <span className="gradient-text">people love</span></>}>
+    <Section
+      id="about"
+      eyebrow="About Me"
+      title={
+        <>
+          Building apps that <span className="gradient-text">people love</span>
+        </>
+      }
+    >
       <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -21,18 +29,18 @@ export function About() {
           className="space-y-5 text-muted-foreground"
         >
           <p>
-            I'm a Flutter Developer with 2+ years of professional experience crafting
-            high-quality mobile applications. From CRM platforms to citizen service apps,
-            I've shipped production software trusted by real users.
+            I'm a Flutter Developer with 2+ years of professional experience crafting high-quality
+            mobile applications. From CRM platforms to citizen service apps, I've shipped production
+            software trusted by real users.
           </p>
           <p>
-            My focus is on clean architecture, beautiful UI, and rock-solid integrations
-            with Firebase, REST APIs, and modern state management patterns. I care deeply
-            about the small details that make an app feel premium.
+            My focus is on clean architecture, beautiful UI, and rock-solid integrations with
+            Firebase, REST APIs, and modern state management patterns. I care deeply about the small
+            details that make an app feel premium.
           </p>
           <p>
-            When I'm not building, I'm exploring new frameworks, contributing to side
-            projects, and pushing the boundaries of what's possible on mobile.
+            When I'm not building, I'm exploring new frameworks, contributing to side projects, and
+            pushing the boundaries of what's possible on mobile.
           </p>
         </motion.div>
 

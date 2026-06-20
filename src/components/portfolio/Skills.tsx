@@ -38,6 +38,17 @@ const groups: Group[] = [
     ],
   },
   {
+    title: "Web Development",
+    tagline: "Responsive and clean web layouts.",
+    accent: "from-[oklch(0.75_0.18_220)] to-[oklch(0.7_0.22_250)]",
+    skills: [
+      { name: "HTML", icon: FileCode, color: "oklch(0.7 0.2 40)" },
+      { name: "CSS", icon: Layers, color: "oklch(0.7 0.18 220)" },
+      { name: "Bootstrap", icon: Boxes, color: "oklch(0.6 0.22 295)" },
+      { name: "JavaScript", icon: Code2, color: "oklch(0.85 0.18 90)" },
+    ],
+  },
+  {
     title: "Backend",
     tagline: "Reliable services and clean APIs.",
     accent: "from-[oklch(0.7_0.22_250)] to-[oklch(0.85_0.18_200)]",
@@ -64,6 +75,7 @@ const groups: Group[] = [
     accent: "from-[oklch(0.85_0.18_200)] to-[oklch(0.55_0.25_275)]",
     skills: [
       { name: "Git", icon: GitBranch, color: "oklch(0.7 0.22 30)" },
+      { name: "Bitbucket", icon: GitBranch, color: "oklch(0.65 0.18 220)" },
       { name: "GitHub", icon: Github, color: "oklch(0.95 0.01 280)" },
       { name: "Postman", icon: Send, color: "oklch(0.7 0.22 40)" },
       { name: "Android Studio", icon: MonitorSmartphone, color: "oklch(0.78 0.18 145)" },
@@ -81,9 +93,6 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   const rotateX = useTransform(srx, (v) => v);
   const rotateY = useTransform(sry, (v) => v);
 
-  const gx = useMotionValue(50);
-  const gy = useMotionValue(50);
-
   const onMove = (e: ReactMouseEvent<HTMLDivElement>) => {
     const el = ref.current;
     if (!el) return;
@@ -92,8 +101,6 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
     const py = (e.clientY - r.top) / r.height;
     ry.set((px - 0.5) * 16);
     rx.set((0.5 - py) * 16);
-    gx.set(px * 100);
-    gy.set(py * 100);
   };
   const onLeave = () => {
     rx.set(0);
@@ -117,7 +124,12 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
     >
       <motion.div
         animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4 + (index % 3), delay: index * 0.2, repeat: Infinity, ease: "easeInOut" }}
+        transition={{
+          duration: 4 + (index % 3),
+          delay: index * 0.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
         className="relative h-full w-full"
       >
         {/* Animated gradient border */}
@@ -134,22 +146,6 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
           }}
         />
         <div className="absolute inset-0 rounded-2xl glass-strong" />
-        {/* Hover spotlight */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: useTransform(
-              [gx, gy],
-              ([x, y]) =>
-                `radial-gradient(circle at ${x}% ${y}%, ${skill.color}33, transparent 60%)`,
-            ),
-          }}
-        />
-        {/* Glow on hover */}
-        <div
-          className="pointer-events-none absolute -inset-1 rounded-2xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-70"
-          style={{ background: skill.color }}
-        />
         <div className="relative flex h-full flex-col items-center justify-center gap-3 p-4 text-center">
           <div
             className="grid h-12 w-12 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-110"
@@ -157,9 +153,7 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
           >
             <Icon className="h-6 w-6" />
           </div>
-          <div className="text-sm font-semibold tracking-tight text-foreground">
-            {skill.name}
-          </div>
+          <div className="text-sm font-semibold tracking-tight text-foreground">{skill.name}</div>
         </div>
       </motion.div>
     </motion.div>
@@ -171,7 +165,11 @@ export function Skills() {
     <Section
       id="skills"
       eyebrow="Skills"
-      title={<>The <span className="gradient-text">tech stack</span> I work with</>}
+      title={
+        <>
+          The <span className="gradient-text">tech stack</span> I work with
+        </>
+      }
       description="A modern toolkit refined across multiple production applications."
     >
       <div className="space-y-12">

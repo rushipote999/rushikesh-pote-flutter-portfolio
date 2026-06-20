@@ -5,10 +5,25 @@ import { Mail, Phone, Linkedin, Github, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const contacts = [
-  { icon: Mail, label: "Email", value: "rushikesh.pote@example.com", href: "mailto:rushikesh.pote@example.com" },
-  { icon: Phone, label: "Phone", value: "+91 00000 00000", href: "tel:+910000000000" },
-  { icon: Linkedin, label: "LinkedIn", value: "/in/rushikeshpote", href: "https://linkedin.com" },
-  { icon: Github, label: "GitHub", value: "@rushikeshpote", href: "https://github.com" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "rushikeshpote2005@gmail.com",
+    href: "mailto:rushikeshpote2005@gmail.com",
+  },
+  { icon: Phone, label: "Phone", value: "+91 7020659533", href: "tel:+917020659533" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "/in/rushikeshpote",
+    href: "https://linkedin.com/in/rushikeshpote",
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    value: "@rushikeshpote",
+    href: "https://github.com/rushikeshpote",
+  },
 ];
 
 export function Contact() {
@@ -17,7 +32,11 @@ export function Contact() {
     <Section
       id="contact"
       eyebrow="Contact"
-      title={<>Let's build <span className="gradient-text">something great</span></>}
+      title={
+        <>
+          Let's build <span className="gradient-text">something great</span>
+        </>
+      }
       description="Have a project in mind or just want to chat? Drop a message."
     >
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -36,7 +55,9 @@ export function Contact() {
                 <c.icon className="h-5 w-5 text-background" />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">
+                  {c.label}
+                </div>
                 <div className="text-sm font-medium">{c.value}</div>
               </div>
             </motion.a>
@@ -70,7 +91,9 @@ export function Contact() {
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground">Email</label>
+              <label className="text-xs uppercase tracking-wider text-muted-foreground">
+                Email
+              </label>
               <input
                 required
                 type="email"
@@ -79,7 +102,9 @@ export function Contact() {
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-muted-foreground">Message</label>
+              <label className="text-xs uppercase tracking-wider text-muted-foreground">
+                Message
+              </label>
               <textarea
                 required
                 rows={5}
@@ -92,7 +117,14 @@ export function Contact() {
               disabled={sending}
               className="group inline-flex items-center justify-center gap-2 rounded-full gradient-primary px-6 py-3 text-sm font-semibold text-background glow transition-transform hover:scale-[1.02] disabled:opacity-70"
             >
-              {sending ? "Sending..." : (<>Send Message <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></>)}
+              {sending ? (
+                "Sending..."
+              ) : (
+                <>
+                  Send Message{" "}
+                  <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </>
+              )}
             </button>
           </div>
         </motion.form>
