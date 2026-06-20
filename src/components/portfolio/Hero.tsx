@@ -213,34 +213,32 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ x: parallaxXNeg, y: parallaxYNeg }}
-          className="relative mx-auto w-full max-w-sm aspect-[4/5]"
+          className="relative mx-auto w-full max-w-lg lg:max-w-2xl lg:-mt-36 lg:-mr-16 flex items-start justify-end"
         >
-          {/* Glow halo */}
+          {/* Glow halo behind the 3D phone */}
           <motion.div
-            animate={{ opacity: [0.35, 0.6, 0.35] }}
+            animate={{ opacity: [0.3, 0.5, 0.3] }}
             transition={{ duration: 5, repeat: Infinity }}
-            className="absolute -inset-8 rounded-[2rem] gradient-primary blur-3xl opacity-60"
+            className="absolute inset-0 rounded-[2rem] gradient-primary blur-3xl opacity-50 pointer-events-none"
           />
           
-          {/* Main 3D Mobile Image with gentle float */}
+          {/* Floating mockup wrapper without card container or border */}
           <motion.div
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -14, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/10 glass-strong p-3 shadow-2xl flex items-center justify-center"
+            className="relative w-full h-full flex items-center justify-center pointer-events-none"
           >
-            {/* Glossy overlay effect */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 pointer-events-none rounded-[2rem]" />
             <img
               src={developer3DImg}
               alt="3D Flutter Portfolio Mockup"
-              className="h-full w-full object-contain rounded-2xl select-none"
+              className="w-full h-auto object-contain select-none scale-110 lg:scale-135"
             />
 
             {/* Floating Badges */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-strong absolute -left-6 top-1/4 rounded-2xl px-3.5 py-2 text-xs sm:block flex items-center gap-2 border border-white/10"
+              className="glass-strong absolute top-[20%] -left-4 lg:-left-12 rounded-2xl px-3.5 py-2 text-xs flex items-center gap-2 border border-white/10 shadow-lg pointer-events-auto"
             >
               <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="font-semibold text-foreground">Flutter 3.x</span>
@@ -249,7 +247,7 @@ export function Hero() {
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-strong absolute -right-6 bottom-1/4 rounded-2xl px-3.5 py-2 text-xs sm:block flex items-center gap-2 border border-white/10"
+              className="glass-strong absolute bottom-[25%] -right-4 lg:-right-12 rounded-2xl px-3.5 py-2 text-xs flex items-center gap-2 border border-white/10 shadow-lg pointer-events-auto"
             >
               <span className="h-2 w-2 rounded-full bg-purple-400 animate-pulse" />
               <span className="font-semibold text-foreground">Firebase Integration</span>
@@ -258,7 +256,7 @@ export function Hero() {
             <motion.div
               animate={{ x: [0, -6, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-strong absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full px-4 py-2 text-[10px] sm:block flex items-center gap-1.5 border border-white/10 uppercase tracking-wider font-bold"
+              className="glass-strong absolute bottom-[5%] left-1/2 -translate-x-1/2 rounded-full px-4 py-2 text-[10px] flex items-center gap-1.5 border border-white/10 uppercase tracking-wider font-bold shadow-lg pointer-events-auto"
             >
               <span className="text-emerald-400">●</span> 60 FPS Fluid UI
             </motion.div>
