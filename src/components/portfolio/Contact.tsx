@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Section } from "./Section";
 import { Mail, Phone, Linkedin, Github, Send } from "lucide-react";
 import { toast } from "sonner";
+import { sendContactEmail } from "@/lib/api/contact.functions";
 
 const contacts = [
   {
@@ -69,14 +70,27 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
             setSending(true);
-            setTimeout(() => {
+            const formData = new FormData(e.currentTarget);
+            const name = formData.get("name") as string;
+            const email = formData.get("email") as string;
+            const message = formData.get("message") as string;
+
+            try {
+              const res = await sendContactEmail({ data: { name, email, message } });
+              if (res.success) {
+                toast.success("Message sent! I'll get back to you soon.");
+                (e.target as HTMLFormElement).reset();
+              } else {
+                toast.error(res.message || "Failed to send message. Please try again.");
+              }
+            } catch (err: any) {
+              toast.error(err.message || "Failed to send message. Please try again.");
+            } finally {
               setSending(false);
-              toast.success("Message sent! I'll get back to you soon.");
-              (e.target as HTMLFormElement).reset();
-            }, 800);
+            }
           }}
           className="glass-strong rounded-3xl p-7"
         >
@@ -85,6 +99,7 @@ export function Contact() {
               <label className="text-xs uppercase tracking-wider text-muted-foreground">Name</label>
               <input
                 required
+                name="name"
                 type="text"
                 placeholder="Your name"
                 className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-[oklch(0.7_0.22_295)]"
@@ -96,6 +111,7 @@ export function Contact() {
               </label>
               <input
                 required
+                name="email"
                 type="email"
                 placeholder="you@example.com"
                 className="mt-2 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-[oklch(0.7_0.22_295)]"
@@ -107,6 +123,7 @@ export function Contact() {
               </label>
               <textarea
                 required
+                name="message"
                 rows={5}
                 placeholder="Tell me about your project..."
                 className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-[oklch(0.7_0.22_295)]"
